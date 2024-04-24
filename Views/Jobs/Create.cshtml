@@ -1,0 +1,132 @@
+﻿@model Job_websit.Models.Job
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+}
+<h1>Create NewJob</h1>
+
+<div style=" padding-left:80px">
+
+
+    @using (Html.BeginForm("Create", "Jobs", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+
+            <div class="alert alert-danger" id="error-div" style="display:none;">
+                <span id="view-err">
+
+                </span>
+
+            </div>
+        </div>
+
+
+        <h2>@ViewBag.Result</h2>
+
+
+
+
+
+
+
+        <div class="form-horizontal">
+
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.JopTitle, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.JopTitle, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.JopTitle, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <br />
+            <div class="form-group">
+                @Html.LabelFor(model => model.JobContent, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+
+                    @Html.TextAreaFor(model => model.JobContent, htmlAttributes: new { @class = "form-control", @id = "myeditor" })
+                    @Html.ValidationMessageFor(model => model.JobContent, "", new { @class = "text-danger", })
+                </div>
+            </div>
+            <br />
+            <div class="form-group">
+                @Html.LabelFor(model => model.JopImage, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+
+                    <input type="file" name="upload" id="upimg" class="form-control form-control-lg" />
+                    @Html.ValidationMessageFor(model => model.JopImage, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <br />
+            <div class="form-group">
+                @Html.LabelFor(model => model.CategoryId, "نوع الوضيفة", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("CategoryId", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.CategoryId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <br />
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Create" class="btn btn-default" id="sava" />
+
+                </div>
+            </div>
+        </div>
+    }
+    <br />
+    <div>
+        <a class="link-danger" href="~/Home/Index"> Back to List </a>
+
+    </div>
+</div>
+
+
+@section scripts{
+    <script>
+        $(function () {
+            $("#sava").click(function () {
+
+                //Check if the input is Empty
+                if ($("#upimg").val() != "") {
+                    // check if the imge extension is valid
+                    var filename = document.getElementById("upimg").value;
+                    var extensionImg = filename.substr(filename.lastIndexOf('.') + 1);
+                    var validExtension = ['jpg', 'jpeg', 'png', 'gif', 'bmp'];
+
+                    if ($.inArray(extensionImg, validExtension) == -1) {
+                        $("#error-div").fadeIn();
+                        $("#view-err").append("قم باضافة صورة  بامتداد صحيح ");
+                        return false;
+                    }
+                    //check if the imge size is valid (2 mb)
+                    var myFileSize = document.getElementById("upimg").files[0].size / 1024 / 1024;
+                    if (myFileSize > 2) {
+                        $("#error-div").fadeIn();
+                        $("#view-err").append("mbقم باضافة صورة ذات حجم 2");
+                        return false;
+                    }
+
+                } else {
+                    $("#error-div").fadeIn();
+                    $("#view-err").append("قم باضافة صورة  ");
+                    return false;
+                }
+            });
+        });
+
+
+
+
+
+
+
+
+    </script>
+}
+<script src="~/Scripts/jquery.js"></script>
+
+

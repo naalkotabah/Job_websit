@@ -1,0 +1,95 @@
+﻿@model Job_websit.Models.ApplyForJob
+
+@{
+    ViewBag.Title = "Apply";
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+}
+
+@using (Html.BeginForm("Apply", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+
+    <div class="form-horizontal">
+
+        <div class="alert alert-danger" id="error-div" style="display:none">
+            <span id="view-err">
+
+            </span>
+
+        </div>
+    </div>
+
+
+
+
+
+    <div style="padding:70px">
+        <div class="col-lg-8 mx-auto">
+            <form id="contactForm" name="sentMessage" novalidate="novalidate">
+                @{
+                    if (ViewBag.Result != null)
+                    {
+                        <h3>@ViewBag.Result</h3>
+                    }
+                }
+
+                <div>
+                    @Html.LabelFor(model => model.Cv, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <input type="file" name="uploadCv" id="upCv" class="form-control form-control-lg" />
+                    @Html.ValidationMessageFor(model => model.Cv, "", new { @class = "text-danger" })
+                </div>
+                <br />
+                <div>
+                    <input class="btn btn-primary float-end btn-xl" value="Create"  id="sendMessageButton" type="submit" style="font-family: Cairo, sans-serif">
+                    @Html.ActionLink("العودة الى الصفحة", "Index")
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+}
+
+
+@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+@Html.ValidationMessage("Message", "", new { @class = "text-danger" })
+
+@section scripts{
+    <script>
+        $(function () {
+            $("#sendMessageButton").click(function () {
+
+                //Check if the input is Empty
+                if ($("#upCv").val() != "") {
+                    // check if the imge extension is valid
+                    var filename = document.getElementById("upCv").value;
+                    var extensionImg = filename.substr(filename.lastIndexOf('.') + 1);
+                    var validExtension = ['pdf'];
+
+                    if ($.inArray(extensionImg, validExtension) == -1) {
+                        $("#error-div").fadeIn();
+                        $("#view-err").append("قم باضافة صورة  بامتداد صحيح ");
+                        return false;
+                    }
+                   
+                  
+
+                } else {
+                    $("#error-div").fadeIn();
+                    $("#view-err").append("قم باضافة صورة  ");
+                    return false;
+                }
+            });
+        });
+
+
+
+
+
+
+
+
+    </script>
+}
+<script src="~/Scripts/jquery.js"></script>

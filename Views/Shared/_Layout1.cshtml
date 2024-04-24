@@ -1,0 +1,109 @@
+﻿@*@using Microsoft.AspNet.Identity
+@using WebApplication1.Models
+@{
+    var db = new ApplicationDbContext();
+    var UserID = User.Identity.GetUserId();
+    var CurrentUser = db.Users.Where(a => a.Id == UserID).SingleOrDefault();
+}*@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=davice-width,initial scale=1" />
+    <title>@Page.Title</title>
+    <link rel="stylesheet" href="~/assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cairo&amp;display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito+Sans">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab:300,400|Roboto:300,400,700">
+    <link rel="stylesheet" href="~/assets/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="~/assets/fonts/ionicons.min.css">
+    <link rel="stylesheet" href="~/assets/css/Animation-Cards-1.css">
+    <link rel="stylesheet" href="~/assets/css/Animation-Cards.css">
+    <link rel="stylesheet" href="~/assets/css/Article-Cards.css">
+    <link rel="stylesheet" href="~/assets/css/Article-Clean.css">
+    <link rel="stylesheet" href="~/assets/css/Article-List.css">
+    <link rel="stylesheet" href="assets/css/Black-Navbar.css">
+    <link rel="stylesheet" href="~/assets/css/dh-card-image-left-dark.css">
+    <link rel="stylesheet" href="~/assets/css/dh-navbar-inverse.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    <link rel="stylesheet" href="~/assets/css/Login-Form-Clean.css">
+    <link rel="stylesheet" href="~/assets/css/Login-Form-Dark.css">
+    <link rel="stylesheet" href="~/assets/css/Navbar---Apple-1.css">
+    <link rel="stylesheet" href="~/assets/css/Navbar---Apple.css">
+    <link rel="stylesheet" href="~/assets/css/Navigation-with-Button.css">
+    <link rel="stylesheet" href="~/assets/css/Navigation-with-Search.css">
+    <link rel="stylesheet" href="~/assets/css/News-Cards.css">
+    <link rel="stylesheet" href="~/assets/css/Off-Canvas-Sidebar-Drawer-Navbar.css">
+    <link rel="stylesheet" href="~/assets/css/Responsive-UI-Card-02.css">
+    <link rel="stylesheet" href="~/assets/css/Right-Sidebar.css">
+    <link rel="stylesheet" href="~/assets/css/Sidebar-Menu-1.css">
+    <link rel="stylesheet" href="~/assets/css/Sidebar-Menu.css">
+    <link rel="stylesheet" href="~/assets/css/SIdebar-Responsive-2-1.css">
+    <link rel="stylesheet" href="~/assets/css/SIdebar-Responsive-2.css">
+    <link rel="stylesheet" href="~/assets/css/Sidebar-right-opening.css">
+    <link rel="stylesheet" href="~/assets/css/Social-Icons.css">
+    <link rel="stylesheet" href="~/assets/css/Soft-UI-Aside-Navbar.css">
+    <link rel="stylesheet" href="~/assets/css/Studious-sidebar.css">
+    <link rel="stylesheet" href="~/assets/css/Team-Boxed.css">
+    <link rel="stylesheet" href="~/assets/css/Vertical-Left-SideBar-by-Jigar-Mistry.css">
+
+
+</head>
+<body id="page-top" data-bs-spy="scroll" data-bs-target="#mainNav" data-bs-offset="72">
+    <!--Navbar-->
+    <nav class="navbar navbar-light navbar-expand-lg fixed-top bg-dark text-uppercase" id="mainNav">
+        <div class="container">
+            <a class="navbar-brand" href="~/Home/Index" style="font-family: Cairo, sans-serif;">وضائفي</a><button data-bs-toggle="collapse" data-bs-target="#navbarResponsive" class="navbar-toggler text-white bg-primary navbar-toggler-right text-uppercase rounded" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><i class="fa fa-bars"></i></button>
+            <div class="collapse navbar-collapse text-center" id="navbarResponsive">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item"></li>
+                    <li class="nav-item"></li>
+
+                    <!--Partial Login-->
+                    @Html.Partial("_Login")
+
+
+                </ul>
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="~/Jobs/Create" style="font-family: Cairo, sans-serif;">انشاء وضيفة </a></li>
+                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="~/Home/GetJobsbyPublisher" style="font-family: Cairo, sans-serif;">المتقدمون الى وضائفك</a></li>
+                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="~/Home/GetJob" style="font-family: Cairo, sans-serif;">الوضائف التي قمت بتقديم اليها</a></li>
+                    <li class="nav-item mx-0 mx-lg-1"></li>
+                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="~/Home/Index" style="font-family: Cairo, sans-serif;">الرئيسة</a></li>
+                    <li class="nav-item mx-0 mx-lg-1"></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+
+
+
+    <div>
+        @RenderBody()
+    </div>
+
+
+    @RenderSection("scripts", required: false)
+    <script src="~/assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="~/assets/js/bs-init-1.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script src="~/assets/js/Off-Canvas-Sidebar-Drawer-Navbar.js"></script>
+    <script src="~/assets/js/freelancer.js"></script>
+    <script src="~/assets/js/Off-Canvas-Sidebar-Drawer-Navbar-1.js"></script>
+    <script src="~/assets/js/Studious-sidebar.js"></script>
+    <script src="~/assets/js/bs-init.js"></script>
+    <script src="~/assets/js/chart.min.js"></script>
+    <script src="~/assets/js/Navbar---Apple.js"></script>
+    <script src="~/assets/js/Right-Sidebar.js"></script>
+    <script src="~/assets/js/Sidebar-Menu.js"></script>
+    <script src="~/assets/js/Sidebar-right-opening.js"></script>
+    <script src="~/assets/js/theme.js"></script>
+
+    <script src="~/Scripts/jquery.js"></script>
+</body>
+</html>

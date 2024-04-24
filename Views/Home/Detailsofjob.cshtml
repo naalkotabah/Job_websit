@@ -1,0 +1,45 @@
+﻿@model Job_websit.Models.ApplyForJob
+
+@{
+    ViewBag.Title = "Detailsofjob";
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+}
+
+<h2>Detailsofjob</h2>
+
+<div>
+   
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.job.JopTitle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.job.JopTitle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Message)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Message)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ApplyDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ApplyDate)
+        </dd>
+
+       
+     
+
+    </dl>
+</div>
+<p>
+  
+    @Html.ActionLink("Back to List", "Getjob")
+</p>

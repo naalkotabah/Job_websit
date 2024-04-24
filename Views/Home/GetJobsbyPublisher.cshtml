@@ -1,0 +1,61 @@
+﻿@model IEnumerable<Job_websit.Models.ApplyForJob>
+@{
+    ViewBag.Title = "GetJobsbyPublisher";
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+}
+
+
+<div style=" padding:50px">
+    <table class="table">
+
+
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.job.JopTitle)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.user.UserName)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.Message)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cv)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ApplyDate)
+            </th>
+
+
+        </tr>
+
+        @foreach (var item in Model)
+        {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.job.JopTitle)
+        </td>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.user.UserName)
+        </td>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.Message)
+        </td>
+        <td>
+            <a class="nav-link" href="~/UploadsCv/@item.Cv" style="font-family: Cairo, sans-serif;">Cv</a>
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ApplyDate)
+        </td>
+
+    </tr>
+
+        }
+
+
+    </table>
+</div>

@@ -1,0 +1,126 @@
+﻿@model IEnumerable<Job_websit.Models.Category>
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+
+
+<section id="portfolio" class="portfolio">
+    <div class="container">
+
+
+
+
+
+        @using (Html.BeginForm("Search", "Home", FormMethod.Post))
+        {
+
+
+
+            <input class="form-control form-control-lg " type="text"
+                   name="searchName"
+                   id="searchName" placeholder="Search...." />
+
+        }
+        <br />
+        <br />
+        @foreach (var item in Model)
+        {
+
+            <h2 class="text-uppercase text-center text-secondary bounce animated" style="font-family: Cairo, sans-serif;">@Html.DisplayFor(modelItem => item.CategoryName)</h2>
+
+
+            <hr class="star-dark mb-5">
+            <div>
+
+                @foreach (var subitem in item.Jpbs)
+                {
+                    <div class="card mb-3">
+                        <img src="~/Uploads/@subitem.JopImage" class="card-img-top" alt="..." style="width:150px ; height:150px;">
+                        <div class="card-body">
+                            <h4 class="text-center card-title">@Html.DisplayFor(modelIteme => subitem.JopTitle)</h4>
+                            <p class="card-text">@Html.DisplayFor(modelIteme => subitem.JobContent)</p>
+                            <br />
+                       
+                            @Html.ActionLink("التقديم الى الوضيفة", "Details", new { JobId = subitem.Id }, new { @class = "btn btn-outline-primary ", @Style = "font-family: Cairo,", @role = "button" })
+
+                        </div>
+                    </div>
+
+             
+
+                }
+            </div>
+
+        }
+
+
+
+    </div>
+
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@*<div class="jumbotron">
+        <h1>مرحبا بك  في موقع الوضائف</h1>
+    </div>
+
+
+    <li>
+        @using (Html.BeginForm("Search", "Home", FormMethod.Post))
+        {
+
+            <input class="form-control" type="text"
+                   name="searchName"
+                   id="searchName" placeholder="ابحث هنا" />
+        }
+    </li>
+
+    @foreach (var item in Model)
+    {
+
+            <h1>@Html.DisplayFor(modelItem => item.CategoryName)</h1>
+            <br />
+            <div class="row">
+                @foreach (var subitem in item.Jpbs)
+                {
+
+
+
+                    <div class="col-md-3 thumbnail" style=" margin-left:15px;margin-right:15px; margin-bottom:50px; height:380px;">
+                        <img src="~/Uploads/@subitem.JopImage" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">@Html.DisplayFor(modelIteme => subitem.JopTitle)</h5>
+                            <p class="card-text">@Html.DisplayFor(modelIteme => subitem.JobContent)</p>
+                            @Html.ActionLink("التفاصيل", "Details", new { JobId = subitem.Id }, new { @class = "btn btn-primary" })
+
+                        </div>
+                    </div>
+
+                }
+            </div>
+
+
+    }*@

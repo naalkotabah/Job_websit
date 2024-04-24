@@ -1,0 +1,41 @@
+﻿@model IEnumerable<Job_websit.Models.Job>
+
+@{
+    ViewBag.Title = "Search";
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+}
+
+<div class="panel panel-default" style="padding:15px;">
+
+    <h1 class="text-uppercase text-center text-secondary bounce animated" style="font-family: Cairo, sans-serif;">نتائج البحث</h1>
+
+
+
+
+    <hr class="star-dark mb-5">
+    <div>
+
+        @foreach (var subitem in Model)
+        {
+
+
+            <div class="card mb-3">
+              
+                    <img class="card-img-top" src="~/Uploads/@subitem.JopImage"style="width:150px ; height:150px;">
+                    <div class="card-body">
+                        <h4 class="text-center card-title" style="font-family: Cairo, sans-serif;">@Html.DisplayFor(modelIteme => subitem.JopTitle)</h4>
+                        <p class="text-center card-title" style="font-family: Cairo, sans-serif;">@Html.DisplayFor(modelIteme => subitem.JobContent)</p>
+                        <br />
+                        @Html.ActionLink("التقدم الى الوضيفة", "Details", new { JobId = subitem.Id }, new { @class = "btn btn-outline-primary ", @Style = "font-family: Cairo,", @role = "button" })
+                    </div>
+                </div>
+            
+
+
+
+        }
+    </div>
+
+
+
+
